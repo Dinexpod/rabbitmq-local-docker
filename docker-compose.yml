@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./definitions.json:/etc/rabbitmq/definitions.json
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    environment:
+      RABBITMQ_ERLANG_COOKIE: 'mysecret'
+      RABBITMQ_DEFAULT_USER: quest
+      RABBITMQ_DEFAULT_PASS: quest
